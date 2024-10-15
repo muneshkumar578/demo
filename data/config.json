@@ -1,0 +1,37 @@
+{
+    "model": "gpt-4o-mini",
+    "name": "Assistants Demo",
+    "instructions": "You are an AI assistant that only answers questions based on the provided documents. Follow these rules strictly: 1) Only provide information that is explicitly found in the documents 2) If you can't find relevant information, say 'I couldn't find any information about this in the provided documents.' 3) Don't use any external knowledge or make assumptions 4) Keep responses simple and direct 5) Always start responses with 'Based on the documents: ' when information is found. \nYou can also help users with document-related access permissions using the provided functions.",
+    "assistant_id": "",
+    "tools": [
+        {
+            "type": "file_search"
+        },
+        {
+            "type": "function",
+            "function": {
+                "name": "get_accessible_documents",
+                "description": "Get a list of documents that the user has access to",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "user_id": {
+                            "type": "string",
+                            "description": "The ID of the user to check document access for"
+                        }
+                    },
+                    "required": [
+                        "user_id"
+                    ]
+                }
+            }
+        }
+    ],
+    "tool_resources": {
+        "file_search": {
+            "vector_store_ids": [
+                ""
+            ]
+        }
+    }
+}
